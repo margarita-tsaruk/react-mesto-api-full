@@ -1,0 +1,11 @@
+.header__signedIn-details {
+  display: flex;
+  flex-direction: row; 
+  gap: 24px;
+}
+
+@media all and (max-width: 384px) {
+  .header__signedIn-details {
+    display: none;
+  }
+}

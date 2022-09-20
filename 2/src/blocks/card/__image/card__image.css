@@ -1,0 +1,16 @@
+.card__image {
+  grid-area: photo;
+  background-size: contain;
+  -webkit-background-size: contain;
+  background-repeat: no-repeat;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  width: 100%;
+  height: 282px;
+  object-fit: cover;
+  object-position: center;
+  cursor: pointer;
+  border-radius: 10px 10px 0 0;
+}
+
+

@@ -1,0 +1,10 @@
+@media all and (max-width: 719px) {
+    .header__menu {
+      padding: 40px 30px 0;
+      max-width: 719px;
+      min-height: 56px;
+      flex-direction: column-reverse;
+      border: 1px solid rgba(84, 84, 84, .7);
+      gap: 40px;
+    }
+  }

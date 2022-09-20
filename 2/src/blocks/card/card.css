@@ -1,0 +1,17 @@
+.card {
+  background-color: #fff;
+  border-radius: 10px;
+  display: grid;
+  grid-template-areas:
+  "photo ."
+  "heading button";
+  grid-template-columns: 214px 1fr;
+  column-gap: 10px;
+  position: relative;
+}
+
+@media all and (max-width: 334px) {
+  .card {
+    grid-template-columns: repeat(auto-fit, minmax(196px, 0));
+  }
+}

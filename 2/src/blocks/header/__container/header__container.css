@@ -1,0 +1,7 @@
+@media all and (max-width: 384px) {
+  .header__container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+}

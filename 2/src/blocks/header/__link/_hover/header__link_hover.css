@@ -1,0 +1,9 @@
+.header__link_hover {
+  transition-property: opacity;
+  transition-duration: .2s;
+  transition-timing-function: linear;
+}
+  
+.header__link_hover:hover {
+  opacity: .5;
+}

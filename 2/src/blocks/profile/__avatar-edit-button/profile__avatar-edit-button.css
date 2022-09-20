@@ -1,0 +1,15 @@
+/* .profile__avatar-edit-button {
+  visibility: hidden;
+  background: transparent url(../../../images/AvatarEditIcon.svg) center no-repeat;
+  border: none;
+  width: 26px;
+  height: 26px;
+  position: absolute;
+  top: 47px;
+  left: 47px;
+  cursor: pointer;
+}
+
+.profile__avatar-edit-button:hover {
+  visibility: visible;
+} */

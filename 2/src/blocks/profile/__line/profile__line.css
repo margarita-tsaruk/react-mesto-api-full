@@ -1,0 +1,12 @@
+.profile__line {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;;
+}
+
+@media all and (max-width: 384px) {
+  .profile__line  {
+    gap: 5px;
+    justify-content: center;
+  }
+}

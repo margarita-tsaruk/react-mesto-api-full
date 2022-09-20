@@ -1,0 +1,19 @@
+.header__sign-out-button {
+  border: 0;
+  padding: 0;
+  padding-top: 6px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: right;
+  color: #A9A9A9;
+  background-color: #000;
+  cursor: pointer;
+  transition-property: opacity;
+  transition-duration: .2s;
+  transition-timing-function: linear;
+}
+  
+.header__sign-out-button:hover {
+  opacity: .5;
+}

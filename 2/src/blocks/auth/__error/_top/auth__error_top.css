@@ -1,0 +1,13 @@
+.auth__error_top {
+  top: 164px;
+  left: 0;
+  max-width: 358px;
+}
+
+@media all and (max-width: 384px) {
+  .auth__error_top {
+    top: 143px;
+    left: 29px;
+    max-width: 275px;
+  }
+}
