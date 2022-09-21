@@ -148,6 +148,22 @@ function updateAvatar(req, res, next) {
     });
 }
 
+function logout(req, res, next) {
+  const id = req.user._id;
+  User.findById(id)
+    .then((user) => {
+      if (!user) {
+        throw new ErrorReqNotFound('Пользователь с указанным _id не найден');
+      }
+      res.clearCookie('jwt');
+      res.send(user);
+    })
+    .catch((err) => {
+      res.send(err);
+    })
+    .catch(next);
+}
+
 module.exports = {
   createUser,
   login,
@@ -156,4 +172,5 @@ module.exports = {
   getUserById,
   updateUser,
   updateAvatar,
+  logout
 };
