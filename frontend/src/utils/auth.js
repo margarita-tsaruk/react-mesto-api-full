@@ -48,6 +48,15 @@ class Auth {
     })
     .then(this._getServerResponse);
   }
+
+  logOut() {
+    return fetch(`${this._url}/signout`, {
+      method: 'DELETE',
+      credentials: 'include',
+      headers: this.headers,
+    })
+    .then(this._getServerResponse)
+  }
 }
 
 const auth = new Auth(baseUrl)

@@ -235,9 +235,15 @@ function App() {
   }
 
   function handleSignOut() {
-    setIsLoggedIn(false);
-    localStorage.removeItem('jwt');
-    history.push('/sign-in');
+    auth.logOut()
+    .then((res) => {
+      setIsLoggedIn(false);
+      localStorage.removeItem('jwt');
+      history.push('/sign-in');
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   }
   
   return (
