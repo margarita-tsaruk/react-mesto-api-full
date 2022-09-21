@@ -1,5 +1,3 @@
-import { baseUrl } from './config.js'
-
 class Auth {
   constructor({url, headers}) {
     this.url = url;
@@ -59,6 +57,11 @@ class Auth {
   }
 }
 
-const auth = new Auth(baseUrl)
+const auth = new Auth({
+  url: 'https://mesto.margarita-tsaruk.nomoredomains.sbs',
+  headers: {
+    'Content-Type': 'application/json'
+  }
+})
   
 export default auth;

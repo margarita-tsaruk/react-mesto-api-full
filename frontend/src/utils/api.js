@@ -1,5 +1,3 @@
-import { config } from './config.js'
-
 class Api {
   constructor({url, token}) {
     this.url = url;
@@ -138,6 +136,11 @@ class Api {
   }
 }
 
-const api = new Api(config)
+const api = new Api({
+  url: 'https://mesto.margarita-tsaruk.nomoredomains.sbs',
+  headers: {
+    'Content-Type': 'application/json'
+  }
+});
   
 export default api;
