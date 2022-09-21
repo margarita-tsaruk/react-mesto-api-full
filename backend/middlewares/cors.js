@@ -3,7 +3,8 @@ const allowedCors = [
   'https://api.margarita-tsaruk.nomoredomains.sbs/#/',
   'http://mesto.margarita-tsaruk.nomoredomains.sbs',
   'http://api.margarita-tsaruk.nomoredomains.sbs/#/',
-  'localhost:3000'
+  'localhost:3000',
+  'localhost:3001'
 ];
 
 const cors = (req, res, next) => {
