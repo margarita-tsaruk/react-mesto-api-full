@@ -137,7 +137,7 @@ class Api {
 }
 
 const api = new Api({
-  url: 'https://mesto.margarita-tsaruk.nomoredomains.sbs',
+  url: 'https://api.margarita-tsaruk.nomoredomains.sbs',
   headers: {
     'Content-Type': 'application/json'
   }
