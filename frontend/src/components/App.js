@@ -42,7 +42,7 @@ function App() {
   }, []);
 
   function handleCheckToken() {
-    auth.getToken(jwt)
+    auth.getToken()
       .then((data) => {
         if(data) {
           setIsLoggedIn(true);
