@@ -224,7 +224,7 @@ function App() {
       if(data) {
         setTimeout(()=> handleAuthorization(userData), 300); //Пришлось добавить setTimeout тк сервер падает из-за частых запросов
         handleInfoTooltip();
-        setUserEmail(data.data.email);
+        setUserEmail(data.email);
       } else {
         handleInfoTooltip();
       }
