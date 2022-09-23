@@ -204,13 +204,18 @@ function App() {
     setUserEmail(userData.email)
     auth.authorize(userData)
       .then((userData) => {
-        if(userData.token) {
-          localStorage.setItem('jwt', userData.token);
-          setIsLoggedIn(true);
-        } else {
-          setIsLoggedIn(false);
-          handleInfoTooltip();
-        }
+        localStorage.setItem('jwt', userData.token);
+        setCurrentUser(userData.data);
+        setIsLoggedIn(true);
+        history.push('/');
+      //   if(userData.token) {
+      //     localStorage.setItem('jwt', userData.token);
+      //     setIsLoggedIn(true);
+      //   } else {
+      //     setIsLoggedIn(false);
+      //     handleInfoTooltip();
+      //   }
+      // })
       })
       .catch((err) => {
         console.log(err);
@@ -221,7 +226,7 @@ function App() {
 
   function handleRegistration(userData) {
     auth.register(userData)
-    .then((data) => {
+    .then((userData) => {
         //setTimeout(()=> handleAuthorization(userData), 300); //Пришлось добавить setTimeout тк сервер падает из-за частых запросов
       setIsRegistered(true);
       handleInfoTooltip();
