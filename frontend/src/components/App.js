@@ -30,6 +30,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
 
+  const [isRegistered, setIsRegistered] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userEmail, setUserEmail] = useState('');
   const history = useHistory();
@@ -200,6 +201,7 @@ function App() {
   }
   
   function handleAuthorization(userData) {
+    setUserEmail(userData.email)
     auth.authorize(userData)
       .then((userData) => {
         if(userData.token) {
@@ -220,17 +222,16 @@ function App() {
   function handleRegistration(userData) {
     auth.register(userData)
     .then((data) => {
-      if(data) {
-        setTimeout(()=> handleAuthorization(userData), 300); //Пришлось добавить setTimeout тк сервер падает из-за частых запросов
-        handleInfoTooltip();
-        setUserEmail(data.data.email);
-      } else {
-        handleInfoTooltip();
-      }
+        //setTimeout(()=> handleAuthorization(userData), 300); //Пришлось добавить setTimeout тк сервер падает из-за частых запросов
+      setIsRegistered(true);
+      handleInfoTooltip();
+        //setUserEmail(data.data.email);
+      history.push('/sign-in');
     })
     .catch((err) => {
       console.log(err);
-      setIsLoggedIn(false);
+      setIsRegistered(false);
+      //setIsLoggedIn(false);
       handleInfoTooltip();
     })
   }
