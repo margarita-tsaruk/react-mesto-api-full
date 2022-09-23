@@ -1,6 +1,7 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
+
 const { NODE_ENV, JWT_SECRET } = process.env;
 
 const ErrorReqNotFound = require('../errors/errorReqNotFound');
@@ -84,7 +85,7 @@ const login = (req, res, next) => {
             res.cookie('jwt', token, {
               expiresIn: '7d',
               httpOnly: true,
-              //sameSite: true,
+              sameSite: true,
             });
 
             res.send({ data: user.toJSON() });
@@ -173,5 +174,5 @@ module.exports = {
   getUserById,
   updateUser,
   updateAvatar,
-  logout
+  logout,
 };

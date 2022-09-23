@@ -1,4 +1,5 @@
 require('dotenv').config();
+
 console.log(process.env.NODE_ENV);
 const express = require('express');
 const mongoose = require('mongoose');
@@ -9,7 +10,7 @@ const cors = require('./middlewares/cors');
 const {
   createUser,
   login,
-  logout
+  logout,
 } = require('./controllers/users');
 
 const { PORT = 3000 } = process.env;
