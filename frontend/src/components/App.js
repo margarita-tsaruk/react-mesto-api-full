@@ -44,8 +44,8 @@ function App() {
       .then((data) => {
         if(data) {
           setIsLoggedIn(true);
-          console.log(data)
-          setUserEmail(data.data.email);
+          console.log(data.email)
+          setUserEmail(data.email);
         } else {
           setIsLoggedIn(false);
           localStorage.removeItem('jwt');
