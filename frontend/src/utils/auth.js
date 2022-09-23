@@ -37,7 +37,7 @@ class Auth {
     .then(this._getServerResponse);
   }
   
-  getToken(token) {
+  getToken() {
     return fetch(`${this.url}/users/me`, {
       method: 'GET',
       headers: this.headers,

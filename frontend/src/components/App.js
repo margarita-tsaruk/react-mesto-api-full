@@ -34,12 +34,14 @@ function App() {
   const [userEmail, setUserEmail] = useState('');
   const history = useHistory();
   
-  function handleCheckToken() {
+  useEffect(() => {
     const jwt = localStorage.getItem('jwt');
-    if(!jwt) {
-      return
+    if (jwt) {
+      handleCheckToken();
     }
-    
+  }, []);
+
+  function handleCheckToken() {
     auth.getToken(jwt)
       .then((data) => {
         if(data) {
@@ -52,13 +54,9 @@ function App() {
         }
       })
       .catch((err) => {
-        console.log(err);
+          console.log(err);
       })
   } 
-
-  useEffect(() => {
-    handleCheckToken()
-  }, [])
 
   useEffect(() => {
     if(isLoggedIn) {
