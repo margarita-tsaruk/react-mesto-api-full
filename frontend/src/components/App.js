@@ -44,6 +44,7 @@ function App() {
       .then((data) => {
         if(data) {
           setIsLoggedIn(true);
+          console.log(data)
           setUserEmail(data.data.email);
         } else {
           setIsLoggedIn(false);
@@ -71,7 +72,6 @@ function App() {
       .then(([userData, cardsData]) => {
         setCurrentUser(userData)
         setCards(cardsData)
-        console.log("true")
       })
       .catch((err) => {
         console.log(err);
