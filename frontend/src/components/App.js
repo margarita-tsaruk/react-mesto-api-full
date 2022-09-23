@@ -202,6 +202,7 @@ function App() {
   
   function handleAuthorization(userData) {
     setUserEmail(userData.email)
+    console.log(userData.email)
     auth.authorize(userData)
       .then((userData) => {
         localStorage.setItem('jwt', userData.token);
