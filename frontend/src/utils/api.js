@@ -1,7 +1,7 @@
 class Api {
-  constructor({url, token}) {
+  constructor({url, headers}) {
     this.url = url;
-    this.token = token;
+    this.headers = headers;
   }
   
   //Объявление приватного метода: получение ответа от сервера
@@ -17,10 +17,8 @@ class Api {
   getInitialCards() {
     return fetch (`${this.url}/cards`, {
       method: 'GET',
-      headers: {
-        Authorization: this.token,
-        'Content-Type': 'application/json'
-      }
+      headers: this.headers,
+      credentials: 'include',
     })
     .then(this._getServerResponse)
   }
@@ -28,10 +26,9 @@ class Api {
   //Объявление публичного метода: отправить запрос серверу - загрузить информацию о пользователе
   getUserInfo() {
     return fetch (`${this.url}/users/me`, {
-      headers: {
-        Authorization: this.token,
-        'Content-Type': 'application/json'
-      },
+      method: 'GET',
+      headers: this.headers,
+      credentials: 'include',
     })
     .then(this._getServerResponse)
   }
@@ -45,10 +42,8 @@ class Api {
   setUserInfo(name, about) {
     return fetch (`${this.url}/users/me`, {
       method: 'PATCH',
-      headers: {
-        Authorization: this.token,
-        'Content-Type': 'application/json'
-      },
+      headers: this.headers,
+      credentials: 'include',
       body: JSON.stringify ({
         name: name,
         about: about
@@ -63,10 +58,8 @@ class Api {
   addCard(cardData) {
     return fetch (`${this.url}/cards`, {
       method: 'POST',
-      headers: {
-        Authorization: this.token,
-        'Content-Type': 'application/json'
-      },
+      headers: this.headers,
+      credentials: 'include',
       body: JSON.stringify ({
         name: cardData.name,
         link: cardData.link
@@ -81,10 +74,8 @@ class Api {
   deleteCard(card) {
     return fetch (`${this.url}/cards/${card._id}`, {
       method: 'DELETE',
-      headers: {
-        Authorization: this.token,
-        'Content-Type': 'application/json'
-      },
+      headers: this.headers,
+      credentials: 'include',
     })
     .then((res) => {
       return this._getServerResponse(res)
@@ -96,10 +87,8 @@ class Api {
     if(isLiked) {
       return fetch (`${this.url}/cards/${card._id}/likes`, {
         method: 'PUT',
-        headers: {
-          Authorization: this.token,
-          'Content-Type': 'application/json'
-        }
+        headers: this.headers,
+        credentials: 'include',
       })
       .then((res) => {
         return this._getServerResponse(res)
@@ -107,10 +96,8 @@ class Api {
     } else {
       return fetch (`${this.url}/cards/${card._id}/likes`, {
         method: 'DELETE',
-          headers: {
-            Authorization: this.token,
-            'Content-Type': 'application/json'
-          }
+          headers: this.headers,
+          credentials: 'include',
       })
       .then((res) => {
         return this._getServerResponse(res)
@@ -121,10 +108,8 @@ class Api {
   //Объявление публичного метода: отправить запрос - обновить аватар
   setUserAvatar(link) {
     return fetch (`${this.url}/users/me/avatar`, {
-      headers: {
-          Authorization: this.token,
-          'Content-Type': 'application/json'
-      },
+      headers: this.headers,
+      credentials: 'include',
       method: 'PATCH',
       body: JSON.stringify ({
         avatar: link,

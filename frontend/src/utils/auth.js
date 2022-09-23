@@ -28,6 +28,7 @@ class Auth {
     return fetch(`${this.url}/signin`, {
       method: 'POST',
       headers: this.headers,
+      credentials: 'include',
       body: JSON.stringify({
         password: userData.password,
         email: userData.email
@@ -39,10 +40,8 @@ class Auth {
   getToken(token) {
     return fetch(`${this.url}/users/me`, {
       method: 'GET',
-      headers: {
-        ...this.headers,
-        authorization: `Bearer ${token}`
-      }
+      headers: this.headers,
+      credentials: 'include',
     })
     .then(this._getServerResponse);
   }
@@ -50,8 +49,8 @@ class Auth {
   logOut() {
     return fetch(`${this._url}/signout`, {
       method: 'DELETE',
-      credentials: 'include',
       headers: this.headers,
+      credentials: 'include',
     })
     .then(this._getServerResponse)
   }
