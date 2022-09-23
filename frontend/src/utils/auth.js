@@ -47,7 +47,7 @@ class Auth {
   }
 
   logOut() {
-    return fetch(`${this._url}/signout`, {
+    return fetch(`${this.url}/signout`, {
       method: 'DELETE',
       headers: this.headers,
       credentials: 'include',
