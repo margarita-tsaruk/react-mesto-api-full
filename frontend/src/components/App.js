@@ -35,7 +35,7 @@ function App() {
   const history = useHistory();
   
   useEffect(() => {
-    if(isLoggedIn) {
+    if(!isLoggedIn) {
       api.getUserInfo()
         .then((userData) => {
           setIsLoggedIn(true);
@@ -183,13 +183,13 @@ function App() {
     console.log(userData.email)
     auth.authorize(userData)
       .then((userData) => {
-        if(userData.token) {
-          localStorage.setItem('jwt', userData.token);
+        // if(userData) {
+          //localStorage.setItem('jwt', userData.token);
           setIsLoggedIn(true);
-        } else {
-          setIsLoggedIn(false);
-          handleInfoTooltip();
-        }
+        // } else {
+        //   setIsLoggedIn(false);
+        //   handleInfoTooltip();
+        // }
       })
       .catch((err) => {
         console.log(err);
