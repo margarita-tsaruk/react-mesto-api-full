@@ -34,6 +34,32 @@ function App() {
   const [userEmail, setUserEmail] = useState('');
   const history = useHistory();
   
+  useEffect(() => {
+    if(isLoggedIn) {
+      api.getUserInfo()
+        .then((userData) => {
+          //setIsLoggedIn(true);
+          console.log(userData)
+          setCurrentUser(userData);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    }
+  }, [isLoggedIn])
+
+  useEffect(() => {
+    if(isLoggedIn) {
+      api.getInitialCards()
+        .then((cardsData) => {
+          setCards(cardsData);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    }
+  }, [isLoggedIn])
+
   function handleEditProfileClick() {
     setIsEditProfilePopupOpen(true);
   }
@@ -191,31 +217,6 @@ function App() {
       handleInfoTooltip();
     })
   }
-  useEffect(() => {
-    if(isLoggedIn) {
-      api.getUserInfo()
-        .then((userData) => {
-          //setIsLoggedIn(true);
-          console.log(userData)
-          setCurrentUser(userData);
-        })
-        .catch((err) => {
-          console.log(err);
-        })
-    }
-  }, [isLoggedIn])
-
-  useEffect(() => {
-    if(isLoggedIn) {
-      api.getInitialCards()
-        .then((cardsData) => {
-          setCards(cardsData);
-        })
-        .catch((err) => {
-          console.log(err);
-        })
-    }
-  }, [isLoggedIn])
 
   function handleSignOut() {
     auth.logOut()
