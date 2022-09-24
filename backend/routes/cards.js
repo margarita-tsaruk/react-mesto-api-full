@@ -19,7 +19,7 @@ cardRoutes.post('/cards', express.json(), celebrate({
     name: Joi.string().required().min(2).max(30),
     link: Joi.string().required()
       // eslint-disable-next-line no-useless-escape
-      .regex(/^https?:\/\/[w{3}]?[0-9a-z\-\.\_\~\:\/\?\#\[\]\!\&'\(\)\*\+\,\;=]+\#?$/),
+      .regex(/(https?:\/\/)(www)?([a-z\d.-]+)\.([a-z.])([a-z\d-._~:/?#[\]@!$&'()*+,;=]*)(#)?$/i),
   }),
 }), createCards);
 
