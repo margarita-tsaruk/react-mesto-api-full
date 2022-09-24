@@ -36,9 +36,15 @@ function App() {
   
   useEffect(() => {
     if(isLoggedIn) {
+      history.push('/');
+    }
+  }, [history, isLoggedIn])
+  
+  useEffect(() => {
+    if(isLoggedIn) {
       api.getUserInfo()
         .then((userData) => {
-          //setIsLoggedIn(true);
+          setIsLoggedIn(true);
           console.log(userData)
           setCurrentUser(userData);
         })
