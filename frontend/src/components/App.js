@@ -35,7 +35,7 @@ function App() {
   const history = useHistory();
   
   useEffect(() => {
-    if(!isLoggedIn) {
+    if(isLoggedIn) {
       api.getUserInfo()
         .then((userData) => {
           setIsLoggedIn(true);
