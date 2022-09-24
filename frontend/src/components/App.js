@@ -57,6 +57,7 @@ function App() {
     if(isLoggedIn) {
       api.getInitialCards()
         .then((cardsData) => {
+          console.log(cardsData)
           setCards(cardsData);
         })
         .catch((err) => {
