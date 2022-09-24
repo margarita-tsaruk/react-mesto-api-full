@@ -187,23 +187,18 @@ function App() {
   }
   
   function handleAuthorization(userData) {
-    console.log(userData.email)
-    auth.authorize(userData)
-      .then((userData) => {
-        // if(userData) {
-          //localStorage.setItem('jwt', userData.token);
+    setUserEmail(userData.email)
+      auth.authorize(userData)
+        .then((userData) => {
+          setCurrentUser(userData.data);
           setIsLoggedIn(true);
           handleInfoTooltip();
-        // } else {
-        //   setIsLoggedIn(false);
-        //   handleInfoTooltip();
-        // }
-      })
-      .catch((err) => {
-        console.log(err);
-        setIsLoggedIn(false);
-        handleInfoTooltip();
-      })
+        })
+        .catch((err) => {
+          console.log(err);
+          setIsLoggedIn(false);
+          handleInfoTooltip();
+        })
   }
 
   function handleRegistration(userData) {
@@ -212,7 +207,6 @@ function App() {
       if(data) {
         setTimeout(()=> handleAuthorization(userData), 300); //Пришлось добавить setTimeout тк сервер падает из-за частых запросов
         handleInfoTooltip();
-        setUserEmail(data.email);
       } else {
         handleInfoTooltip();
       }
