@@ -33,11 +33,6 @@ class Api {
     .then(this._getServerResponse)
   }
   
-  //Объявление публичного метода: выполнять загрузку всех данных
-  getData() {
-    return Promise.all([this.getUserInfo(), this.getInitialCards()])
-  }
-
   //Объявление публичного метода: отправить запрос серверу на обновление данных профиля пользователя
   setUserInfo(name, about) {
     return fetch (`${this.url}/users/me`, {

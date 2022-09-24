@@ -34,47 +34,29 @@ function App() {
   const [userEmail, setUserEmail] = useState('');
   const history = useHistory();
   
-  function handleCheckToken() {
-    auth.getToken()
-      .then((data) => {
-        if(data) {
+  useEffect(() => {
+    if(isLoggedIn) {
+      api.getUserInfo()
+        .then((userData) => {
           setIsLoggedIn(true);
-          console.log(data.email)
-          setUserEmail(data.email);
-        } else {
-          setIsLoggedIn(false);
-          localStorage.removeItem('jwt');
-        }
-      })
-      .catch((err) => {
+          setCurrentUser(userData);
+        })
+        .catch((err) => {
           console.log(err);
-      })
-  } 
-
-  useEffect(() => {
-    const jwt = localStorage.getItem('jwt');
-    if (jwt) {
-      handleCheckToken();
+        })
     }
-  }, []);
-  
-  useEffect(() => {
-    if(isLoggedIn) {
-      history.push('/');
-    }
-  }, [history, isLoggedIn])
+  }, [isLoggedIn])
 
   useEffect(() => {
     if(isLoggedIn) {
-      api.getData()
-      .then(([userData, cardsData]) => {
-        setCurrentUser(userData)
-        setCards(cardsData)
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-    } 
+      api.getInitialCards()
+        .then((cardsData) => {
+          setCards(cardsData);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    }
   }, [isLoggedIn])
 
   function handleEditProfileClick() {

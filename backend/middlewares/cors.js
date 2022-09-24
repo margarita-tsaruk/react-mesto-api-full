@@ -4,12 +4,13 @@ const allowedCors = [
   'http://mesto.margarita-tsaruk.nomoredomains.sbs',
   'http://api.margarita-tsaruk.nomoredomains.sbs',
   'localhost:3000',
+  'localhost:3001',
 ];
 
 const cors = (req, res, next) => {
   const { origin } = req.headers;
   const { method } = req;
-  const DEFAULT_ALLOWED_METHODS = "GET,HEAD,PUT,PATCH,POST,DELETE";
+  const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
   const requestHeaders = req.headers['access-control-request-headers'];
 
   if (allowedCors.includes(origin)) {
