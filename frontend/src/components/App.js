@@ -38,7 +38,7 @@ function App() {
     if(isLoggedIn) {
       api.getUserInfo()
         .then((userData) => {
-          setIsLoggedIn(true);
+          //setIsLoggedIn(true);
           setCurrentUser(userData);
         })
         .catch((err) => {
@@ -186,6 +186,7 @@ function App() {
         // if(userData) {
           //localStorage.setItem('jwt', userData.token);
           setIsLoggedIn(true);
+          handleInfoTooltip();
         // } else {
         //   setIsLoggedIn(false);
         //   handleInfoTooltip();
