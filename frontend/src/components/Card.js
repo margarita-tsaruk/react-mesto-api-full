@@ -22,7 +22,7 @@ function Card( {card, onCardClick, onCardLike, onConfirmation} ) {
   );
 
   console.log(card)
-  const isLiked = card.likes.some(i => i === currentUser._id);
+  const isLiked = card.data.likes.some(i => i === currentUser._id);
   const cardLikeButtonClassName = (
     `card__like-button ${isLiked ? 'card__like-button_active' : 'card__like-button'}`
   );
