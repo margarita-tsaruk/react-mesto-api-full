@@ -34,17 +34,31 @@ function App() {
   const [userEmail, setUserEmail] = useState('');
   const history = useHistory();
   
+  function handleCheckToken() {
+    auth.getToken()
+      .then(
+        (data) => {
+            setUserEmail(data.email);
+            setIsLoggedIn(true);
+            history.push('/');
+        },
+        (err) => {
+          console.log(err);
+        }
+      )
+  }
+
+  useEffect(() => {
+    if (localStorage.getItem('jwt') === 'true') {
+      handleCheckToken();
+    }
+  }, [loggedIn])
+  
+
   useEffect(() => {
     if(isLoggedIn) {
-      history.push('/');
-    }
-  }, [history, isLoggedIn])
-  
-  useEffect(() => {
-    if(!isLoggedIn) {
       api.getUserInfo()
         .then((userData) => {
-          setIsLoggedIn(true);
           setCurrentUser(userData);
         })
         .catch((err) => {
@@ -153,8 +167,8 @@ function App() {
   }
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
-    
+    const isLiked = card.likes.some(i => i === currentUser._id);
+    console.log(card.likes)
     api.changeLikeCardStatus(card, !isLiked) 
       .then((newCard) => {
         setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
