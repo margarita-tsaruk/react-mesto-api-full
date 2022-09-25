@@ -91,8 +91,8 @@ class Api {
     } else {
       return fetch (`${this.url}/cards/${card._id}/likes`, {
         method: 'DELETE',
-          headers: this.headers,
-          credentials: 'include',
+        headers: this.headers,
+        credentials: 'include',
       })
       .then((res) => {
         return this._getServerResponse(res)
