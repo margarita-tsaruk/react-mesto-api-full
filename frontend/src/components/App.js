@@ -49,10 +49,11 @@ function App() {
   }
 
   useEffect(() => {
-    if (localStorage.getItem('jwt') === 'true') {
+    const loggedIn = localStorage.getItem('jwt');
+    if (loggedIn) {
       handleCheckToken();
     }
-  }, [loggedIn])
+  }, [])
   
 
   useEffect(() => {
