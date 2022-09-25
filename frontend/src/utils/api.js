@@ -66,8 +66,8 @@ class Api {
   }
   
   //Объявление публичного метода: отправить запрос серверу на удаление своей карточки
-  deleteCard(card) {
-    return fetch (`${this.url}/cards/${card._id}`, {
+  deleteCard(cardId) {
+    return fetch (`${this.url}/cards/${cardId}`, {
       method: 'DELETE',
       headers: this.headers,
       credentials: 'include',
