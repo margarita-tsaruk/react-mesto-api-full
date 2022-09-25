@@ -205,12 +205,10 @@ function App() {
           setCurrentUser(userData.data);
           setIsLoggedIn(true);
           history.push('/');
-          handleInfoTooltip();
         })
         .catch((err) => {
           console.log(err);
           setIsLoggedIn(false);
-          handleInfoTooltip();
         })
   }
 
@@ -218,7 +216,7 @@ function App() {
     auth.register(userData)
     .then((data) => {
       if(data) {
-        setTimeout(()=> handleAuthorization(userData), 300); //Пришлось добавить setTimeout тк сервер падает из-за частых запросов
+        handleAuthorization(userData); 
         handleInfoTooltip();
         setUserEmail(data.email);
       } else {
