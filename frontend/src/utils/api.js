@@ -78,9 +78,9 @@ class Api {
   }
    
   //Объявление публичного метода: отправить запрос серверу - поставить лайк карточки
-  changeLikeCardStatus(card, isLiked) {
+  changeLikeCardStatus(cardId, isLiked) {
     if(isLiked) {
-      return fetch (`${this.url}/cards/${card._id}/likes`, {
+      return fetch (`${this.url}/cards/${cardId}/likes`, {
         method: 'PUT',
         headers: this.headers,
         credentials: 'include',
@@ -89,7 +89,7 @@ class Api {
         return this._getServerResponse(res)
       })
     } else {
-      return fetch (`${this.url}/cards/${card._id}/likes`, {
+      return fetch (`${this.url}/cards/${cardId}/likes`, {
         method: 'DELETE',
         headers: this.headers,
         credentials: 'include',
