@@ -48,7 +48,7 @@ function App() {
 
   useEffect(() => {
     const jwt = localStorage.getItem('jwt');
-    if (loggedIn) {
+    if (jwt) {
       handleCheckToken();
     }
   }, []);
