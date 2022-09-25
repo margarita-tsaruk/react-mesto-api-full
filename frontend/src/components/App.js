@@ -31,30 +31,35 @@ function App() {
   const [cards, setCards] = useState([]);
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isSignedUp, setIsSignedUp] = useState(false);
   const [userEmail, setUserEmail] = useState('');
   const history = useHistory();
   
   function handleCheckToken() {
-    auth.getToken()
-      .then(
-        (data) => {
-            setUserEmail(data.email);
-            setIsLoggedIn(true);
-            history.push('/');
-        },
-        (err) => {
-          console.log(err);
+    const jwt = localStorage.getItem('jwt');
+    if(!jwt) {
+      return
+    }
+    
+    auth.getToken(jwt)
+      .then((data) => {
+        if(data) {
+          setIsLoggedIn(true);
+          setUserEmail(data.email);
+          history.push('/');
+        } else {
+          setIsLoggedIn(false);
+          localStorage.removeItem('jwt');
         }
-      )
-  }
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  } 
 
   useEffect(() => {
-    const loggedIn = localStorage.getItem('jwt');
-    if (loggedIn) {
-      handleCheckToken();
-    }
-  }, [])
-  
+    handleCheckToken()
+  }, []);
 
   useEffect(() => {
     if(isLoggedIn) {
@@ -205,8 +210,10 @@ function App() {
     setUserEmail(userData.email)
       auth.authorize(userData)
         .then((userData) => {
+          localStorage.setItem('jwt', 'true');
           setCurrentUser(userData.data);
           setIsLoggedIn(true);
+          history.push('/');
           handleInfoTooltip();
         })
         .catch((err) => {
@@ -219,16 +226,13 @@ function App() {
   function handleRegistration(userData) {
     auth.register(userData)
     .then((data) => {
-      if(data) {
-        setTimeout(()=> handleAuthorization(userData), 300); //Пришлось добавить setTimeout тк сервер падает из-за частых запросов
-        handleInfoTooltip();
-      } else {
-        handleInfoTooltip();
-      }
+      setIsSignedUp(true);
+      handleEditInfoTooltipOpen();
+      history.push('/sign-in');
     })
     .catch((err) => {
       console.log(err);
-      setIsLoggedIn(false);
+      setIsSignedUp(false);
       handleInfoTooltip();
     })
   }
