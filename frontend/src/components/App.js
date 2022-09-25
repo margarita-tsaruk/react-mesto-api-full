@@ -209,7 +209,7 @@ function App() {
     setUserEmail(userData.email)
       auth.authorize(userData)
         .then((userData) => {
-          localStorage.setItem('jwt', 'true');
+          localStorage.setItem('jwt', true);
           setCurrentUser(userData.data);
           setIsLoggedIn(true);
           history.push('/');
