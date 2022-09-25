@@ -35,21 +35,11 @@ function App() {
   const history = useHistory();
   
   function handleCheckToken() {
-    const jwt = localStorage.getItem('jwt');
-    if(!jwt) {
-      return
-    }
-    
-    auth.getToken(jwt)
+    auth.getToken()
       .then((data) => {
-        if(data) {
-          setIsLoggedIn(true);
-          setUserEmail(data.email);
-          history.push('/');
-        } else {
-          setIsLoggedIn(false);
-          localStorage.removeItem('jwt');
-        }
+        setIsLoggedIn(true);
+        setUserEmail(data.email);
+        history.push('/');
       })
       .catch((err) => {
         console.log(err);
@@ -57,7 +47,10 @@ function App() {
   } 
 
   useEffect(() => {
-    handleCheckToken()
+    const jwt = localStorage.getItem('jwt');
+    if (loggedIn) {
+      handleCheckToken();
+    }
   }, []);
 
   useEffect(() => {
