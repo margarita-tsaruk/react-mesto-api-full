@@ -157,7 +157,7 @@ function logout(req, res, next) {
       next(new ErrorReqNotFound('Пользователь с указанным _id не найден'));
       return;
     }
-    res.clearCookie('jwt').send().end();
+    res.clearCookie('jwt').send({ message: 'Ok' }).end();
   } catch (err) {
     next(err);
   }

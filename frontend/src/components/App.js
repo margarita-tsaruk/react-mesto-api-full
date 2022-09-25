@@ -47,8 +47,8 @@ function App() {
   } 
 
   useEffect(() => {
-    const jwt = localStorage.getItem('jwt');
-    if (jwt) {
+    const loggedIn = localStorage.getItem('loggedIn');
+    if (loggedIn) {
       handleCheckToken();
     }
   }, []);
@@ -202,7 +202,7 @@ function App() {
     setUserEmail(userData.email)
       auth.authorize(userData)
         .then((userData) => {
-          localStorage.setItem('jwt', true);
+          localStorage.setItem('loggedIn', true);
           setCurrentUser(userData.data);
           setIsLoggedIn(true);
           history.push('/');
@@ -237,7 +237,7 @@ function App() {
     auth.logOut()
     .then((res) => {
       setIsLoggedIn(false);
-      localStorage.removeItem('jwt');
+      localStorage.removeItem('loggedIn');
       history.push('/sign-in');
     })
     .catch((err) => {

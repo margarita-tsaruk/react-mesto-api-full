@@ -29,7 +29,7 @@ userRoutes.patch('/users/me/avatar', express.json(), celebrate({
   body: Joi.object().keys({
     avatar: Joi.string().required()
       // eslint-disable-next-line no-useless-escape
-      .regex(/^https?:\/\/[w{3}]?[0-9a-z\-\.\_\~\:\/\?\#\[\]\!\&'\(\)\*\+\,\;=]+\#?$/),
+      .regex(/(https?:\/\/)(www)?([a-z\d.-]+)\.([a-z.])([a-z\d-._~:/?#[\]@!$&'()*+,;=]*)(#)?$/i),
   }),
 }), updateAvatar);
 
