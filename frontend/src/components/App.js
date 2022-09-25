@@ -227,7 +227,7 @@ function App() {
     auth.register(userData)
     .then((data) => {
       setIsSignedUp(true);
-      handleEditInfoTooltipOpen();
+      handleInfoTooltip();
       history.push('/sign-in');
     })
     .catch((err) => {
