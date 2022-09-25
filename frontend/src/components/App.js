@@ -31,7 +31,6 @@ function App() {
   const [cards, setCards] = useState([]);
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isSignedUp, setIsSignedUp] = useState(false);
   const [userEmail, setUserEmail] = useState('');
   const history = useHistory();
   
@@ -226,13 +225,17 @@ function App() {
   function handleRegistration(userData) {
     auth.register(userData)
     .then((data) => {
-      setIsSignedUp(true);
-      handleInfoTooltip();
-      history.push('/sign-in');
+      if(data) {
+        setTimeout(()=> handleAuthorization(userData), 300); //Пришлось добавить setTimeout тк сервер падает из-за частых запросов
+        handleInfoTooltip();
+        setUserEmail(data.email);
+      } else {
+        handleInfoTooltip();
+      }
     })
     .catch((err) => {
       console.log(err);
-      setIsSignedUp(false);
+      setIsLoggedIn(false);
       handleInfoTooltip();
     })
   }
