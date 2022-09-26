@@ -17,7 +17,7 @@ function AddPlacePopup( {isPopupOpened, onClose, onAddPlace} ) {
       setValues({});
       resetErrors();
     }
-  }, [isPopupOpened, setValues, setValues]);
+  }, [isPopupOpened, setValues, resetErrors]);
 
   return (
     <PopupWithForm
