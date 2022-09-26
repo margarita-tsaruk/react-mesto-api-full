@@ -51,7 +51,7 @@ function App() {
     if (loggedIn) {
       handleCheckToken();
     }
-  }, []);
+  }, [handleCheckToken]);
 
   useEffect(() => {
     if(isLoggedIn) {
@@ -208,19 +208,16 @@ function App() {
         .catch((err) => {
           console.log(err);
           setIsLoggedIn(false);
+          handleInfoTooltip();
         })
   }
 
   function handleRegistration(userData) {
     auth.register(userData)
     .then((data) => {
-      if(data) {
-        handleAuthorization(userData); 
-        handleInfoTooltip();
-        setUserEmail(data.email);
-      } else {
-        handleInfoTooltip();
-      }
+      handleAuthorization(userData); 
+      handleInfoTooltip();
+      setUserEmail(data.email);
     })
     .catch((err) => {
       console.log(err);

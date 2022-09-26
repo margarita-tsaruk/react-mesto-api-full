@@ -19,7 +19,7 @@ function EditProfilePopup( {isPopupOpened, onClose, onUpdateUser} ) {
       resetErrors();
       setValues({ name: currentUser.name, about: currentUser.about });
     }
-  }, [currentUser, isPopupOpened]);
+  }, [currentUser, isPopupOpened, setValues, resetErrors]);
 
   return (
     <PopupWithForm

@@ -19,7 +19,7 @@ function EditAvatarPopup( {isPopupOpened, onClose, onUpdateAvatar} ) {
       setValues({});
       resetErrors();
     }
-  }, [isPopupOpened]);
+  }, [isPopupOpened, setValues, resetErrors]);
 
   return (
     <PopupWithForm
