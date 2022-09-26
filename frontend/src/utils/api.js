@@ -79,7 +79,7 @@ class Api {
    
   //Объявление публичного метода: отправить запрос серверу - поставить лайк карточки
   changeLikeCardStatus(cardId, isLiked) {
-    if(isLiked) {
+    if(!isLiked) {
       return fetch (`${this.url}/cards/${cardId}/likes`, {
         method: 'PUT',
         headers: this.headers,
