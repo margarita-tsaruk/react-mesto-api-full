@@ -51,7 +51,7 @@ function App() {
     if (loggedIn) {
       handleCheckToken();
     }
-  }, [loggedIn]);
+  }, []);
 
   useEffect(() => {
     if(isLoggedIn) {
