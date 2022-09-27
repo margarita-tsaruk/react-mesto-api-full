@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const regularExpression = require('../utils/utils');
+const { regularExpression } = require('../utils/utils');
 
 const cardSchema = new mongoose.Schema({
   name: {

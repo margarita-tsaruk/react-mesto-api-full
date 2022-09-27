@@ -3,6 +3,7 @@ const { celebrate, Joi } = require('celebrate');
 
 const cardRoutes = express.Router();
 const { validateCardId } = require('../middlewares/validation');
+const { regularExpression } = require('../utils/utils');
 
 const {
   getCards,
@@ -18,8 +19,7 @@ cardRoutes.post('/cards', celebrate({
   body: Joi.object().keys({
     name: Joi.string().required().min(2).max(30),
     link: Joi.string().required()
-      // eslint-disable-next-line no-useless-escape
-      .regex(/(https?:\/\/)(www)?([a-z\d.-]+)\.([a-z.])([a-z\d-._~:/?#[\]@!$&'()*+,;=]*)(#)?$/i),
+      .regex(regularExpression),
   }),
 }), createCards);
 

@@ -3,7 +3,7 @@ const { celebrate, Joi } = require('celebrate');
 
 const userRoutes = express.Router();
 const { validateUserId } = require('../middlewares/validation');
-const regularExpression = require('../utils/utils');
+const { regularExpression } = require('../utils/utils');
 
 const {
   getUsers,

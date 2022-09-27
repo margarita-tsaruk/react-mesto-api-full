@@ -5,7 +5,7 @@ const {
   login,
   logout,
 } = require('../controllers/users');
-const regularExpression = require('../utils/utils');
+const { regularExpression } = require('../utils/utils');
 
 const routes = express.Router();
 
