@@ -12,9 +12,9 @@ const {
   dislikeCard,
 } = require('../controllers/cards');
 
-cardRoutes.get('/cards', express.json(), getCards);
+cardRoutes.get('/cards', getCards);
 
-cardRoutes.post('/cards', express.json(), celebrate({
+cardRoutes.post('/cards', celebrate({
   body: Joi.object().keys({
     name: Joi.string().required().min(2).max(30),
     link: Joi.string().required()
@@ -23,10 +23,10 @@ cardRoutes.post('/cards', express.json(), celebrate({
   }),
 }), createCards);
 
-cardRoutes.delete('/cards/:cardId', express.json(), validateCardId, deleteCard);
+cardRoutes.delete('/cards/:cardId', validateCardId, deleteCard);
 
-cardRoutes.put('/cards/:cardId/likes', express.json(), validateCardId, likeCard);
+cardRoutes.put('/cards/:cardId/likes', validateCardId, likeCard);
 
-cardRoutes.delete('/cards/:cardId/likes', express.json(), validateCardId, dislikeCard);
+cardRoutes.delete('/cards/:cardId/likes', validateCardId, dislikeCard);
 
 module.exports = cardRoutes;

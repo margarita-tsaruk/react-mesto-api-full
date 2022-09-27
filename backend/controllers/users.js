@@ -39,31 +39,20 @@ const createUser = (req, res, next) => {
     password,
   } = req.body;
 
-  User.findOne({ email })
-    .then((user) => {
-      if (user) {
-        throw new ErrorExistingUser('Пользователь с таким email уже существует');
+  bcrypt.hash(password, 10)
+    .then((hashedPassword) => User.create({
+      name, about, avatar, email, password: hashedPassword,
+    }))
+    .then((newUser) => res.send(newUser))
+    .catch((err) => {
+      if (err.code === 11000) {
+        next(new ErrorExistingUser('Пользователь с таким email уже существует'));
+      } else if (err.name === 'ValidationError') {
+        throw new ErrorBadReq('Переданы некорректные данные при создании пользователя');
       } else {
-        bcrypt.hash(password, 10)
-          .then((hashedPassword) => {
-            User.create({
-              name,
-              about,
-              avatar,
-              email,
-              password: hashedPassword,
-            })
-              .then((newUser) => res.send(newUser))
-              .catch((err) => {
-                if (err.name === 'ValidationError') {
-                  throw new ErrorBadReq('Переданы некорректные данные при создании пользователя');
-                }
-              })
-              .catch(next);
-          });
+        next(err);
       }
-    })
-    .catch(next);
+    });
 };
 
 const login = (req, res, next) => {

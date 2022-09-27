@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
+const regularExpression = require('../utils/utils');
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -18,8 +19,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     validate: {
       validator(v) {
-        // eslint-disable-next-line no-useless-escape
-        return /(https?:\/\/)(www)?([a-z\d.-]+)\.([a-z.])([a-z\d-._~:/?#[\]@!$&'()*+,;=]*)(#)?$/i.test(v);
+        return regularExpression.test(v);
       },
       message: 'Введите url',
     },

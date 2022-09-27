@@ -3,6 +3,7 @@ const { celebrate, Joi } = require('celebrate');
 
 const userRoutes = express.Router();
 const { validateUserId } = require('../middlewares/validation');
+const regularExpression = require('../utils/utils');
 
 const {
   getUsers,
@@ -28,8 +29,7 @@ userRoutes.patch('/users/me', express.json(), celebrate({
 userRoutes.patch('/users/me/avatar', express.json(), celebrate({
   body: Joi.object().keys({
     avatar: Joi.string().required()
-      // eslint-disable-next-line no-useless-escape
-      .regex(/(https?:\/\/)(www)?([a-z\d.-]+)\.([a-z.])([a-z\d-._~:/?#[\]@!$&'()*+,;=]*)(#)?$/i),
+      .regex(regularExpression),
   }),
 }), updateAvatar);
 
